@@ -1,7 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';  
 
 function NavBar() {
+  const navigate = useNavigate(); 
   return (
     <>
       <Navbar bg="light" style={{position:"fixed", width:"100%"}}>
@@ -16,7 +19,7 @@ function NavBar() {
             />
           </Navbar.Brand>
           <div style={{float:"right"}}>
-	            Log Out
+            <Button variant="light" onClick={()=>{navigate("/");}}>Log Out</Button>
 	      </div>
         </Container>
       </Navbar>

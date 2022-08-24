@@ -51,7 +51,7 @@ function NotifsLayout() {
                     </tr>
                 </tbody>
               </Table>
-              <Map sender={data[id].senderName} start={[user.lat,user.lon]} end={[sender[id].lat,sender[id].lon]}/>
+              <Map self="You" other={data[id].senderName} start={[user.lat,user.lon]} end={[sender[id].lat,sender[id].lon]}/>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
@@ -64,7 +64,7 @@ function NotifsLayout() {
         {data.map((item,id) => (
           <Alert variant={item.read===false?"info":"light"}>
             {item.senderType==="Man"?"Bio-Fuel Manufacturer":item.senderType==="Pro"?"Bio-Fuel Tools/Machine Provider":item.senderType==="Mat"?"Bio-Mass/Waste Provider":item.senderType==="Con"?"Bio-Fuel Consumer":"Logistics Provider"} 
-              : {item.senderName} has sent you a message
+              : {item.senderName} has a message for you
                 <Accordion defaultActiveKey="" style={{marginTop:"2%",marginLeft:"10%",marginRight:"10%"}}>
                     <Accordion.Item eventKey={id}>
                       <Accordion.Header>View Message</Accordion.Header>
