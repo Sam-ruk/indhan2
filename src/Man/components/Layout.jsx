@@ -1,6 +1,10 @@
 import { useState,useEffect } from "react";
 import ModalEditListItem from "../listing/ModalEditListItem";
 import AnaLayout from "../analytics/AnaLayout";
+import OrdersLayout from "../orders/OrdersLayout";
+import RecentsLayout from "../recent/RecentsLayout";
+import SettingsLayout from "../settings/SettingsLayout";
+import NotifsLayout from "../notifs/NotifsLayout";
 import NavBar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Listing from "../listing/Listing";
@@ -12,8 +16,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import FileBase64 from 'react-file-base64';
-import Table from 'react-bootstrap/Table';
 import { Routes,Route } from "react-router-dom";
+import Footer from './Footer';
 
 function Layout() {
   const [curr, setCurr] = useState(0);
@@ -121,7 +125,7 @@ function Layout() {
         <ModalEditListItem what="0" onPropEdit={handlePropEdit} prop={properties[item]} data={data[item]} onClose={()=>{setShowEdit(false)}} show={showEdit} onDelProp={handleDelProp} onSubmit={handleSubmit}/>
         <ModalEditListItem what="1" onPropEdit={handlePropEdit} prop={[]} data={{"img1":"","img2":"","name":"","desc":"","type":"","min":"","price":"","unit":""}} onClose={()=>{setShowNew(false)}} show={showNew} onDelProp={handleDelProp} onSubmit={handleSubmit}/>
         <NavBar style={{zIndex:"11",position:"relative"}}/>
-        <Container style={{float:"left",position:"relative",marginTop:"70px"}}>
+        <Container style={{float:"left",position:"relative",marginTop:"70px",minHeight:"70vh"}}>
           <Row md={5} xs={1}>
             <Col style={{padding:"0"}}>
               <Sidebar curr={curr} onCurr={handleCurr}/>
@@ -140,15 +144,16 @@ function Layout() {
                         </div>
                       }
                       />
-                  <Route path="orders"/>
-                  <Route path="recent"/>
-                  <Route path="profile"/>
+                  <Route path="orders" element={<OrdersLayout/>}/>
+                  <Route path="notifs" element={<NotifsLayout/>}/>
+                  <Route path="recents" element={<RecentsLayout/>}/>
                   <Route path="analytics" element={<AnaLayout/>}/>
-                  <Route path="settings"/>
+                  <Route path="settings" element={<SettingsLayout/>}/>
               </Routes>
             </Col>
           </Row>
         </Container>
+        <Footer/>
     </div>
   );
 }

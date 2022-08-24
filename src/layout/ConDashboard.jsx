@@ -1,9 +1,9 @@
 import Layout from '../components/Layout';
 
-function Dashboard() {
+function ManDashboard(props) {
   return (
     <Layout/>
   );
 }
 
-export default Dashboard;
+export default ManDashboard;

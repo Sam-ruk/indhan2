@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { scaleQuantile } from 'd3-scale';
 import './Map.css';
@@ -15,7 +15,6 @@ const PROJECTION_CONFIG = {
   center: [78.9629, 22.5937] // always in [East Latitude, North Longitude]
 };
 
-// Red Variants
 const COLOR_RANGE = [
   '#adf295',
   '#95ef75',
@@ -25,8 +24,7 @@ const COLOR_RANGE = [
   '#41c015',
   '#36a012',
   '#2b800e',
-  '#20600a',
-  '#154007'
+  '#20600a'
 ];
 
 const DEFAULT_COLOR = '#EEE';
@@ -49,53 +47,50 @@ const geographyStyle = {
   }
 };
 
-// will generate random heatmap data on every call
-const getHeatMapData = () => {
+const getHeatMapData = (x) => {
   return [
-    { id: 'AP', state: 'Andhra Pradesh', value: getRandomInt() },
-    { id: 'AR', state: 'Arunachal Pradesh', value: getRandomInt() },
-    { id: 'AS', state: 'Assam', value: getRandomInt() },
-    { id: 'BR', state: 'Bihar', value: getRandomInt() },
-    { id: 'CT', state: 'Chhattisgarh', value: getRandomInt() },
-    { id: 'GA', state: 'Goa', value: 21 },
-    { id: 'GJ', state: 'Gujarat', value: 22 },
-    { id: 'HR', state: 'Haryana', value: getRandomInt() },
-    { id: 'HP', state: 'Himachal Pradesh', value: 24 },
-    { id: 'JH', state: 'Jharkhand', value: 26 },
-    { id: 'KA', state: 'Karnataka', value: 27 },
-    { id: 'KL', state: 'Kerala', value: getRandomInt() },
-    { id: 'MP', state: 'Madhya Pradesh', value: getRandomInt() },
-    { id: 'MH', state: 'Maharashtra', value: getRandomInt() },
-    { id: 'MN', state: 'Manipur', value: getRandomInt() },
-    { id: 'ML', state: 'Meghalaya', value: 59 },
-    { id: 'MZ', state: 'Mizoram', value: getRandomInt() },
-    { id: 'NL', state: 'Nagaland', value: 59 },
-    { id: 'OR', state: 'Odisha', value: 59 },
-    { id: 'PB', state: 'Punjab', value: getRandomInt() },
-    { id: 'RJ', state: 'Rajasthan', value: getRandomInt() },
-    { id: 'SK', state: 'Sikkim', value: getRandomInt() },
-    { id: 'TN', state: 'Tamil Nadu', value: getRandomInt() },
-    { id: 'TG', state: 'Telangana', value: getRandomInt() },
-    { id: 'TR', state: 'Tripura', value: 14 },
-    { id: 'UT', state: 'Uttarakhand', value: getRandomInt() },
-    { id: 'UP', state: 'Uttar Pradesh', value: 15 },
-    { id: 'WB', state: 'West Bengal', value: 17 },
-    { id: 'WB', state: 'West Bengal', value: 17 },
-    { id: 'AN', state: 'Andaman and Nicobar Islands', value: getRandomInt() },
-    { id: 'CH', state: 'Chandigarh', value: getRandomInt() },
-    { id: 'DN', state: 'Dadra and Nagar Haveli', value: 19 },
-    { id: 'DD', state: 'Daman and Diu', value: 20 },
-    { id: 'DL', state: 'Delhi', value: 59 },
-    { id: 'JK', state: 'Jammu and Kashmir', value: 25 },
-    { id: 'LA', state: 'Ladakh', value: getRandomInt() },
-    { id: 'LD', state: 'Lakshadweep', value: getRandomInt() },
-    { id: 'PY', state: 'Puducherry', value: getRandomInt() }
+    { id: 'AP', state: 'Andhra Pradesh', value: x.AP },
+    { id: 'AR', state: 'Arunachal Pradesh', value: x.AN },
+    { id: 'AS', state: 'Assam', value: x.AS },
+    { id: 'BR', state: 'Bihar', value: x.BH },
+    { id: 'CT', state: 'Chhattisgarh', value: x.CG },
+    { id: 'GA', state: 'Goa', value: x.GO },
+    { id: 'GJ', state: 'Gujarat', value: x.GJ },
+    { id: 'HR', state: 'Haryana', value: x.HY },
+    { id: 'HP', state: 'Himachal Pradesh', value: x.HP },
+    { id: 'JH', state: 'Jharkhand', value: x.JH },
+    { id: 'KA', state: 'Karnataka', value: x.KR },
+    { id: 'KL', state: 'Kerala', value: x.KE },
+    { id: 'MP', state: 'Madhya Pradesh', value: x.MP },
+    { id: 'MH', state: 'Maharashtra', value: x.MH },
+    { id: 'MN', state: 'Manipur', value: x.MN },
+    { id: 'ML', state: 'Meghalaya', value: x.MG },
+    { id: 'MZ', state: 'Mizoram', value: x.MZ },
+    { id: 'NL', state: 'Nagaland', value: x.NG },
+    { id: 'OD', state: 'Odisha', value: x.OD },
+    { id: 'PB', state: 'Punjab', value: x.PJ },
+    { id: 'RJ', state: 'Rajasthan', value: x.RJ },
+    { id: 'SK', state: 'Sikkim', value: x.SK },
+    { id: 'TN', state: 'Tamil Nadu', value: x.TN },
+    { id: 'TS', state: 'Telangana', value: x.TG },
+    { id: 'TR', state: 'Tripura', value: x.TP },
+    { id: 'UK', state: 'Uttarakhand', value: x.UK },
+    { id: 'UP', state: 'Uttar Pradesh', value: x.UP },
+    { id: 'WB', state: 'West Bengal', value: x.WB },
+    { id: 'AN', state: 'Andaman and Nicobar Islands', value: x.AD },
+    { id: 'CH', state: 'Chandigarh', value: x.CH },
+    { id: 'DN', state: 'Dadra and Nagar Haveli', value: x.DN },
+    { id: 'DD', state: 'Daman and Diu', value: x.DD },
+    { id: 'DL', state: 'Delhi', value: x.DE },
+    { id: 'JK', state: 'Jammu and Kashmir', value: x.JK },
+    { id: 'LA', state: 'Ladakh', value: x.JK },
+    { id: 'LD', state: 'Lakshadweep', value: x.LD },
+    { id: 'PY', state: 'Puducherry', value: x.PU }
   ];
 };
 
 function SellerMap() {
-  const [tooltipContent, setTooltipContent] = useState('');
-  const [data, setData] = useState(getHeatMapData());
+  const [data, setData] = useState(getHeatMapData({"AP":0,"AD":0,"AN":0,"AS":0,"BH":0,"CH":0,"CG":0,"DN":0,"DD":0,"DE":0,"LD":0,"PU":0,"GO":0,"GJ":0,"HY":0,"HP":0,"JK":0,"JH":0,"KR":0,"KE":0,"MP":0,"MH":0,"MN":0,"MG":0,"MZ":0,"NG":0,"OD":0,"PJ":0,"RJ":0,"SK":0,"TN":0,"TG":0,"TP":0,"UP":0,"UK":0,"WB":0}));
 
   const gradientData = {
     fromColor: COLOR_RANGE[0],
@@ -107,6 +102,15 @@ function SellerMap() {
   const colorScale = scaleQuantile()
     .domain(data.map(d => d.value))
     .range(COLOR_RANGE);
+
+  useEffect(() => { 
+    fetch(`http://localhost:4000/supply`,{method: 'GET'})
+      .then(async (resp)=>{
+        var x = await resp.json();
+        setData(getHeatMapData(x));
+        console.log(x);
+      });
+  },[]);
 
   return (
     <div className="full-width-height container">

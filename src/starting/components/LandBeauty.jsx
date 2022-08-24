@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Counter from './Counter';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -8,6 +9,39 @@ import SellerMap from './SellerMap';
 import Container from 'react-bootstrap/Container';
 
 function LandBeauty () {
+    const [buyer, setBuyer] = useState(0);
+    const [seller, setSeller] = useState(0); 
+    const [ethanol, setEthanol] = useState(0); 
+    const [cng, setCng] = useState(0); 
+    const [diesel, setDiesel] = useState(0); 
+ 
+    useEffect(() => { 
+        fetch(`http://localhost:4000/buyers`,{method: 'GET'})
+          .then(async (resp)=>{
+            var x = await resp.json();
+            setBuyer(x.count);
+          });
+        fetch(`http://localhost:4000/sellers`,{method: 'GET'})
+          .then(async (resp)=>{
+            var x = await resp.json();
+            setSeller(x.count);
+          });
+        fetch(`http://localhost:4000/ethanol`,{method: 'GET'})
+          .then(async (resp)=>{
+            var x = await resp.json();
+            setEthanol(x.count);
+          });
+        fetch(`http://localhost:4000/diesel`,{method: 'GET'})
+          .then(async (resp)=>{
+            var x = await resp.json();
+            setDiesel(x.count);
+          });
+        fetch(`http://localhost:4000/cng`,{method: 'GET'})
+          .then(async (resp)=>{
+            var x = await resp.json();
+            setCng(x.count);
+          });
+      },[]);
     return(
         <div>
           <Col>
@@ -39,7 +73,7 @@ function LandBeauty () {
                     </Col>
                 </Row>
                 <Row lg={5}>
-                {[{count:20,text:"Sellers"},{count:30,text:"Buyers"},{count:2500,text:"Ltr. Bioethanol Sold"},{count:1200,text:"Ltr. Biodiesel"},{count:1300,text:"GGEs of BioCNG"}].map((item) => (
+                {[{count:seller,text:"Sellers"},{count:buyer,text:"Buyers"},{count:ethanol,text:"Ltr. Bioethanol Sold"},{count:diesel,text:"Ltr. Biodiesel"},{count:cng,text:"GGEs of BioCNG"}].map((item) => (
                     <Col>
                         <Card border="light">
                           <Card.Body>

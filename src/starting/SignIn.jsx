@@ -15,8 +15,12 @@ function Login(props) {
         var x = await resp.json();
         if(x.status===true)
         {
-           alert("You're Logged In.");
-           props.onSuccess();
+           fetch(`http://localhost:4000/users/get/${phone}`,{method: 'GET'})
+            .then(async (resp)=>{
+              var y = await resp.json();
+              alert("You're Logged In.");
+              props.onSuccess(y[0].type);
+            });
         }
         else
           alert("Your credentials are wrong. Please Login again.");

@@ -38,7 +38,7 @@ function SignUp(props) {
                 if(x.status===true)
                 {
                     alert("You're Logged In.");
-                    props.onSuccess();
+                    props.onSuccess(type);
                 }
                 else
                   alert("Some Error Occurred. Please Register Again.");
@@ -71,6 +71,7 @@ function SignUp(props) {
                 <Form.Control as="select" required aria-required="true" onChange={(e)=>{setType(e.target.value)}}>
                   <option value="" selected disabled>Select</option>
                   <option value="Man">Bio-Fuel Manufacturer</option>
+                  <option value="Pro">Bio-Fuel Tools/Machine Provider</option>
                   <option value="Mat">Bio-Mass/Waste Provider</option>
                   <option value="Con">Bio-Fuel Consumer</option>
                   <option value="Log">Logistics Provider</option>
@@ -101,42 +102,42 @@ function SignUp(props) {
                 <Form.Label style={{float:"left"}}>State</Form.Label>
                   <Form.Control as="select" required aria-required="true" onChange={(e)=>{setState(e.target.value)}}>
                     <option value="" selected disabled>Select</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                    <option value="Assam">Assam</option>
-                    <option value="Bihar">Bihar</option>
-                    <option value="Chandigarh">Chandigarh</option>
-                    <option value="Chhattisgarh">Chhattisgarh</option>
-                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                    <option value="Daman and Diu">Daman and Diu</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Lakshadweep">Lakshadweep</option>
-                    <option value="Puducherry">Puducherry</option>
-                    <option value="Goa">Goa</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Haryana">Haryana</option>
-                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                    <option value="Jharkhand">Jharkhand</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Manipur">Manipur</option>
-                    <option value="Meghalaya">Meghalaya</option>
-                    <option value="Mizoram">Mizoram</option>
-                    <option value="Nagaland">Nagaland</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Sikkim">Sikkim</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Tripura">Tripura</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                    <option value="Uttarakhand">Uttarakhand</option>
-                    <option value="West Bengal">West Bengal</option>
+                    <option value="AP">Andhra Pradesh</option>
+                    <option value="AD">Andaman and Nicobar Islands</option>
+                    <option value="AN">Arunachal Pradesh</option>
+                    <option value="AS">Assam</option>
+                    <option value="BH">Bihar</option>
+                    <option value="CH">Chandigarh</option>
+                    <option value="CG">Chhattisgarh</option>
+                    <option value="DN">Dadar and Nagar Haveli</option>
+                    <option value="DD">Daman and Diu</option>
+                    <option value="DE">Delhi</option>
+                    <option value="LD">Lakshadweep</option>
+                    <option value="PU">Puducherry</option>
+                    <option value="GO">Goa</option>
+                    <option value="GJ">Gujarat</option>
+                    <option value="HY">Haryana</option>
+                    <option value="HP">Himachal Pradesh</option>
+                    <option value="JK">Jammu and Kashmir</option>
+                    <option value="JH">Jharkhand</option>
+                    <option value="KR">Karnataka</option>
+                    <option value="KE">Kerala</option>
+                    <option value="MP">Madhya Pradesh</option>
+                    <option value="MH">Maharashtra</option>
+                    <option value="MN">Manipur</option>
+                    <option value="MG">Meghalaya</option>
+                    <option value="MZ">Mizoram</option>
+                    <option value="NG">Nagaland</option>
+                    <option value="OD">Odisha</option>
+                    <option value="PJ">Punjab</option>
+                    <option value="RJ">Rajasthan</option>
+                    <option value="SK">Sikkim</option>
+                    <option value="TN">Tamil Nadu</option>
+                    <option value="TG">Telangana</option>
+                    <option value="TP">Tripura</option>
+                    <option value="UP">Uttar Pradesh</option>
+                    <option value="UK">Uttarakhand</option>
+                    <option value="WB">West Bengal</option>
                   </Form.Control>
               </Form.Group>
             </Row>

@@ -10,8 +10,17 @@ import { useNavigate } from "react-router-dom";
 function Landing () {
     let navigate = useNavigate();
 
-    const goDash = () => {
-        navigate("/dashboard");
+    const goDash = (type) => {
+        if(type=="Man")
+            navigate("/man/dashboard");
+        else if(type=="Pro")
+            navigate("/pro/dashboard");
+        else if(type=="Mat")
+            navigate("/mat/dashboard");
+        else if(type=="Con")
+            navigate("/con/dashboard");
+        else
+            navigate("/log/dashboard");
     };
    return (
     <div>
