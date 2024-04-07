@@ -39,7 +39,7 @@ function Footer () {
           </CDBBox>
         </CDBBox>
         <CDBBox display="flex" className="mt-4" justifyContent="between">
-          <small className="ml-2">&copy; indhan, 2022. All rights reserved.</small>
+          <small className="ml-2">&copy; indhan, 2024. All rights reserved.</small>
           <CDBBox display="flex">
             <CDBBtn flat color="dark" className="p-2">
               <CDBIcon fab icon="facebook-f" />

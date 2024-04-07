@@ -20,12 +20,12 @@ function SignUp(props) {
   const [state, setState] = useState('');
 
    const handleSubmit = async() => {
-      fetch(`https://indhan.netlify.app:4000/users/${phone}`,{method: 'GET'})
+      fetch(`13.228.225.19:4000/users/${phone}`,{method: 'GET'})
       .then(async (resp)=>{
         var x = await resp.json();
         if(x.status===true)
         {
-           const response = await fetch(`https://indhan.netlify.app:4000/users`, {
+           const response = await fetch(`13.228.225.19:4000/users`, {
                 body: JSON.stringify({ 
                   "name":name,"phone":phone,"pass":pass, 
                   "type":type,"comp":comp,"num":num,"addr":addr, 

@@ -104,7 +104,7 @@ function BuyerMap() {
     .range(COLOR_RANGE);
 
   useEffect(() => { 
-    fetch(`https://indhan.netlify.app:4000/supply`,{method: 'GET'})
+    fetch(`13.228.225.19:4000/supply`,{method: 'GET'})
       .then(async (resp)=>{
         var x = await resp.json();
         setData(getHeatMapData(x));
