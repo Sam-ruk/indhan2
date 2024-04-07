@@ -16,27 +16,27 @@ function LandBeauty () {
     const [diesel, setDiesel] = useState(0); 
  
     useEffect(() => { 
-        fetch(`http://localhost:4000/buyers`,{method: 'GET'})
+        fetch(`https://indhan.netlify.app:4000/buyers`,{method: 'GET'})
           .then(async (resp)=>{
             var x = await resp.json();
             setBuyer(x.count);
           });
-        fetch(`http://localhost:4000/sellers`,{method: 'GET'})
+        fetch(`https://indhan.netlify.app:4000/sellers`,{method: 'GET'})
           .then(async (resp)=>{
             var x = await resp.json();
             setSeller(x.count);
           });
-        fetch(`http://localhost:4000/ethanol`,{method: 'GET'})
+        fetch(`https://indhan.netlify.app:4000/ethanol`,{method: 'GET'})
           .then(async (resp)=>{
             var x = await resp.json();
             setEthanol(x.count);
           });
-        fetch(`http://localhost:4000/diesel`,{method: 'GET'})
+        fetch(`https://indhan.netlify.app:4000/diesel`,{method: 'GET'})
           .then(async (resp)=>{
             var x = await resp.json();
             setDiesel(x.count);
           });
-        fetch(`http://localhost:4000/cng`,{method: 'GET'})
+        fetch(`https://indhan.netlify.app:4000/cng`,{method: 'GET'})
           .then(async (resp)=>{
             var x = await resp.json();
             setCng(x.count);

@@ -10,12 +10,12 @@ function Login(props) {
   const [phone, setPhone] = useState(0); 
   const [pass, setPass] = useState(''); 
   const handleSubmit = async() => {
-      fetch(`http://localhost:4000/users/${phone}/${pass}`,{method: 'GET'})
+      fetch(`https://indhan.netlify.app:4000/users/${phone}/${pass}`,{method: 'GET'})
       .then(async (resp)=>{
         var x = await resp.json();
         if(x.status===true)
         {
-           fetch(`http://localhost:4000/users/get/${phone}`,{method: 'GET'})
+           fetch(`https://indhan.netlify.app:4000/users/get/${phone}`,{method: 'GET'})
             .then(async (resp)=>{
               var y = await resp.json();
               alert("You're Logged In.");
