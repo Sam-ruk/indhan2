@@ -14,7 +14,5 @@ For running the website, enter:
 
 ## 📧 Contact
 
-- **Author**: [Samruddhi Khairnar](https://github.com/KBTUG20170)
-- **Email**: kbtug20170@kbtcoe.org
-- **LinkedIn**: (https://www.linkedin.com/in/samruddhi-khairnar-4a2b19225/)
+- **Author**: [Samruddhi K](https://github.com/Sam-ruk)
 
