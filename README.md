@@ -15,4 +15,5 @@ For running the website, enter:
 ## 📧 Contact
 
 - **Author**: [Samruddhi K](https://github.com/Sam-ruk)
+- **Email**: samk.freelance@gmail.com
 
